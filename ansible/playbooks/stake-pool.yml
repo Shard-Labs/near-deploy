@@ -1,0 +1,6 @@
+---
+- name: Near staking pool
+  hosts: all
+  roles:
+    - role: roles/stake-pool
+

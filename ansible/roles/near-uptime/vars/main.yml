@@ -1,0 +1,4 @@
+nearcore_environment: shardnet
+user: azureuser
+pool_id: test
+account_id: test

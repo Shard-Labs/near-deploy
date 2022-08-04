@@ -1,0 +1,14 @@
+#!/bin/sh
+# Ping call to renew Proposal added to crontab
+
+export NEAR_ENV={{ nearcore_environment }}
+export LOGS=/home/{{ user }}/logs
+export POOLID={{ pool_id }}
+export ACCOUNTID={{ account_id }}
+
+echo "---" >> $LOGS/all.log
+date >> $LOGS/all.log
+near call $POOLID.factory.shardnet.near ping '{}' --accountId $ACCOUNTID --gas=300000000000000 >> $LOGS/all.log
+near proposals | grep $POOLID >> $LOGS/all.log
+near validators current | grep $POOLID >> $LOGS/all.log
+near validators next | grep $POOLID >> $LOGS/all.log

@@ -40,3 +40,11 @@ ansible-setup-validator:
 ansible-setup-exporters:
 	cd ansible && \
 	ansible-playbook -l all playbooks/setup-exporters.yml
+
+ansible-stake-pool:
+	cd ansible && \
+	ansible-playbook -l all playbooks/stake-pool.yml --extra-var="account_id=$(ACCOUNT_ID),public_key=$(PUBLIC_KEY)"
+
+ansible-uptime:
+	cd ansible && \
+	ansible-playbook -l all playbooks/near-uptime.yml
