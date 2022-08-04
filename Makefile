@@ -37,9 +37,6 @@ ansible-setup-validator:
 	cd ansible && \
 	ansible-playbook -l all playbooks/setup-validator.yml
 
-ansible-setup-exporters:
-	cd ansible && \
-	ansible-playbook -l all playbooks/setup-exporters.yml
 
 ansible-stake-pool:
 	cd ansible && \
