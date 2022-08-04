@@ -1,0 +1,27 @@
+---
+
+- name: Initialize working directory
+  shell:
+    cmd: neard --home ~/.near init --chain-id {{ nearcore_environment }} --download-genesis
+
+- name: Remove the old config.json
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+    - "{{ ansible_env.HOME }}/.near/config.json"
+
+- name: Download the new config.json
+  get_url:
+    url: https://s3-us-west-1.amazonaws.com/build.nearprotocol.com/nearcore-deploy/{{nearcore_environment}}/config.json
+    dest: "{{ ansible_env.HOME }}/.near/config.json"
+
+- name: Setup & run neard service
+  template:
+    src: files/neard.service
+    dest: /etc/systemd/system/neard.service
+    mode: "755"
+  notify:
+    - Startup reload neard service
+    - Start neard service
+  become: true

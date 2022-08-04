@@ -1,0 +1,17 @@
+- name:  Install Node.JS and npm
+  shell: curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+
+- name: Install Node.JS and npm version 18.x
+  apt:
+    update_cache: yes
+    state: latest
+    name:  nodejs
+  become: true
+
+- name:  Define the PATH directory for Node
+  shell: PATH="$PATH"
+  
+- name: Verify the NodeJS version 18.x
+  command: node -v
+  register: version
+- debug: msg="{{ version.stdout }}"

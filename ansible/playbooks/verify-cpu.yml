@@ -1,0 +1,6 @@
+---
+- name: Install dependencies
+  hosts: all
+  roles:
+    - role: roles/verify-cpu
+

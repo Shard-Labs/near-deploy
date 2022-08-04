@@ -1,0 +1,7 @@
+ssh/*
+!ssh/README.md
+.idea/*
+ansible/inventory.yml
+.idea/*
+ansible/roles/setup-validator/*
+ansible/playbooks/setup-validator.yml

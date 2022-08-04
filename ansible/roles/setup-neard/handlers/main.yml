@@ -1,0 +1,14 @@
+---
+
+#- name: Startup reload neard service
+#  systemd:
+#    name: neard
+#    enabled: yes
+#    daemon_reload: yes
+#  become: yes
+
+- name: Start neard service
+  systemd:
+    name: neard
+    state: started
+  become: yes

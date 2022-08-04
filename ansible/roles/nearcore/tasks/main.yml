@@ -1,0 +1,30 @@
+---
+
+- name: Delete old nearcore files
+  file:
+   path: "{{ item }}"
+    state: absent
+  with_items:
+    - "{{ ansible_env.HOME }}/nearcore"
+
+- name: Cloning the nearcore
+  git:
+    repo: "https://github.com/near/nearcore"
+    dest: "{{ ansible_env.HOME }}/nearcore"
+    force: yes
+    version: "{{ nearcore_commit }}"
+
+- name: Compile nearcore binary
+  shell:
+    cmd: cargo build -p neard --release --features {{ nearcore_environment }}
+    chdir: "{{ ansible_env.HOME }}/nearcore"
+  environment:
+    PATH: "{{ ansible_env.HOME }}/.cargo/bin:{{ ansible_env.PATH }}"
+
+- name: Copy neard path to usr/local/bin
+  copy:
+    src: "{{ ansible_env.HOME }}/nearcore/target/release/neard"
+    dest: /usr/local/bin
+    mode: a+x
+    remote_src: yes
+  become: true

@@ -1,0 +1,9 @@
+- name:  Install near-cli with npm 8.x.x
+  shell: sudo npm install -g near-cli
+
+- name: Persist Near testnet environment
+  shell:  | 
+    echo 'export NEAR_ENV={{ near_env }}' >> ~/.bashrc
+    echo 'export NEAR_ENV={{ near_env }}' >> ~/.bash_profile 
+    #source $HOME/.bash_profile
+  

@@ -1,0 +1,57 @@
+---
+
+- name: Install packages
+  apt:
+    update_cache: yes
+    state: latest
+    name:
+    - apt-transport-https
+    - ca-certificates
+    - software-properties-common
+    - certbot
+    - python3-pip
+    - bash
+    - make
+    - curl
+    - clang
+    - cargo
+    - git
+    - zip
+    - unzip
+    - wget
+    - g++
+    - gcc-aarch64-linux-gnu
+    - binutils-dev
+    - libcurl4-openssl-dev
+    - zlib1g-dev
+    - libdw-dev
+    - libiberty-dev
+    - cmake
+    - gcc
+    - build-essential
+    - protobuf-compiler
+    - libssl-dev
+    - pkg-config
+    - clang
+    - llvm
+    - golang-go
+  become: true
+  
+- name: Configuration for python3
+  shell:  | 
+    USER_BASE_BIN=$(python3 -m site --user-base)/bin
+    export PATH="$USER_BASE_BIN:$PATH"
+
+- name: Install rustup
+  shell:
+    cmd: curl -sSf https://sh.rustup.rs | sh -s -- -y
+    warn: no
+
+- name: Configurre cargo to shell
+  shell:
+    cmd: . {{ ansible_env.HOME }}/.cargo/env
+
+- name: Add wasm target to the toolchain
+  shell:
+    cmd: "{{ ansible_env.HOME }}/.cargo/bin/rustup target add wasm32-unknown-unknown"
+    warn: no

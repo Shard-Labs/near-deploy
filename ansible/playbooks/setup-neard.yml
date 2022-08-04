@@ -1,0 +1,5 @@
+---
+- name: Install dependencies
+  hosts: all
+  roles:
+    - role: roles/setup-neard
