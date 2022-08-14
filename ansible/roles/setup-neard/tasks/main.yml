@@ -1,15 +1,15 @@
 ---
-
-- name: Initialize working directory
-  shell:
-    cmd: neard --home ~/.near init --chain-id {{ nearcore_environment }} --download-genesis
-
-- name: Remove the old config.json
+- name: Remove t#he old config.json
   file:
     path: "{{ item }}"
     state: absent
   with_items:
     - "{{ ansible_env.HOME }}/.near/config.json"
+
+- name: Initialize working directory
+  shell:
+    cmd: ./target/release/neard --home ~/.near init --chain-id {{ nearcore_environment }} --download-genesis
+    chdir: "{{ ansible_env.HOME }}/nearcore"
 
 - name: Download the new config.json
   get_url:

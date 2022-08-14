@@ -14,7 +14,6 @@
     - make
     - curl
     - clang
-    - cargo
     - git
     - zip
     - unzip
@@ -44,10 +43,10 @@
 
 - name: Install rustup
   shell:
-    cmd: curl -sSf https://sh.rustup.rs | sh -s -- -y
+    cmd: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs  |sh -s -- -y
     warn: no
 
-- name: Configurre cargo to shell
+- name: Configure cargo to shell
   shell:
     cmd: . {{ ansible_env.HOME }}/.cargo/env
 
