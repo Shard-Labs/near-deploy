@@ -27,7 +27,7 @@ Run the command below to verify if the host meets up with minimum requirements.
 
 Supported message will be shown, if host passes verification.
 
-![](./Readme/Screenshot from 2022-08-13 23-36-54.png)
+![](near-deploy/Readme/Screenshot from 2022-08-13 23-36-54.png)
 
 ```
 make ansible-verify-cpu
