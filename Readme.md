@@ -27,8 +27,6 @@ Run the command below to verify if the host meets up with minimum requirements.
 
 Supported message will be shown, if host passes verification.
 
-![](near-deploy/Readme/Screenshot from 2022-08-13 23-36-54.png)
-
 ```
 make ansible-verify-cpu
 ```
@@ -51,7 +49,7 @@ make ansible-near-cli
 This process git clones the nearcore project and compiles nearcore binary.
 
 Define the _nearcore_environment_, _remote_user_ and other specified variables in the **Makefile**, in this case, _shardnet_ will be used.
-![](./Readme/Screenshot from 2022-08-15 12-39-05.png)
+
 
 ```
 make ansible-nearcore
@@ -93,9 +91,7 @@ You need to run this command:
 near login
 ```
 Note: This command launches a web browser allowing for the authorization of a full access key to be copied locally.
-![](./Readme/Screenshot from 2022-08-14 17-24-17.png)
 1 – Copy the link in your browser
-![](./Readme/Screenshot from 2022-08-14 17-24-29.png)
 
 Enter your wallet id into the terminal and press Enter
 
