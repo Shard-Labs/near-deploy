@@ -27,11 +27,11 @@ ansible-verify-cpu:
 
 ansible-nearcore:
 	cd ansible && \
-	ansible-playbook -l all playbooks/nearcore.yml --extra-var="nearcore_environment=$(AS_NEARCORE_ENV)"
+	ansible-playbook -l all playbooks/nearcore.yml --extra-var="nearcore_environment=<nearcore_environment>"
 
 ansible-setup-neard:
 	cd ansible && \
-	ansible-playbook -l all playbooks/setup-neard.yml --extra-var="nearcore_environment=$(AS_NEARCORE_ENV)"
+	ansible-playbook -l all playbooks/setup-neard.yml --extra-var="nearcore_environment=<nearcore_environment>,user=<remote_user>"
 
 ansible-setup-validator:
 	cd ansible && \
@@ -40,7 +40,7 @@ ansible-setup-validator:
 
 ansible-stake-pool:
 	cd ansible && \
-	ansible-playbook -l all playbooks/stake-pool.yml --extra-var="account_id=$(ACCOUNT_ID),public_key=$(PUBLIC_KEY)"
+	ansible-playbook -l all playbooks/stake-pool.yml --extra-var="account_id=<account_id>,public_key=<public_key>"
 
 ansible-uptime:
 	cd ansible && \
