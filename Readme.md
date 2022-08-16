@@ -15,7 +15,10 @@ Copy the ssh private-key.pem for the host to into the ssh directory.
 
 Enter the key's name _private_key_file  = ../ssh/<private-key.pem>_ ansible.cfg in the ansible directory. 
 
-Check to see if the remote host can be reached with the command **_make ansible-ping_**
+Check to see if the remote host can be reached with the command 
+```
+	cd ansible && ansible all -m ping
+```
 
 You will see a success output on your terminal if the host is reachable.
 
@@ -30,38 +33,39 @@ Supported message will be shown, if host passes verification.
 ![plot](./Readme/Screenshot from 2022-08-13 23-36-54.png)
 
 ```
-make ansible-verify-cpu
+cd ansible  (change directory to ansible)
+ansible-playbook -l all playbooks/verify-cpu.yml
 ```
 If host passes the verification test, proceed with the Near installation.
 
 # Install Near dependencies
 Install dependencies needed to setup near environment. 
 ```
-make ansible-deps
+ansible-playbook -l all playbooks/verify-cpu.yml
+ansible-playbook -l all playbooks/node.yml
 ```
 
 # Install node and node cli
 Install node and node cli on the host.
 ```
-make ansible-node
-make ansible-near-cli
+ansible-playbook -l all playbooks/near-cli.yml
 ```
 
 # Setup nearcore
 This process git clones the nearcore project and compiles nearcore binary.
 
-Define the _nearcore_environment_, _user_ variable in the **Makefile**, _nearcore_environment_=_shardnet_, _user_=<remote_user>.
+Define the _nearcore_environment_, _user_ variable, _nearcore_environment_=_shardnet_, _user_=<remote_user>.
 ![plot](./Readme/Screenshot from 2022-08-15 12-39-05.png)
 
 ```
-make ansible-nearcore
+ansible-playbook -l all playbooks/nearcore.yml --extra-var="nearcore_environment=shardnet"
 ```
 
 
 # Setup and run neard
 Setup neard service.
 ```
-make ansible-setup-neard
+ansible-playbook -l all playbooks/setup-neard.yml --extra-var="nearcore_environment=shardnet,user=<remote_user>"
 ```
 
 
@@ -149,5 +153,5 @@ sudo service neard start
 # Stake near pool
 Near staking pool, this step should be after activating the node as a validator.
 ```
-make ansible-setup-validator
+ansible-playbook -l all playbooks/setup-validator.yml
 ```
