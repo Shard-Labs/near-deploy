@@ -17,7 +17,7 @@ Enter the key's name _private_key_file  = ../ssh/<private-key.pem>_ ansible.cfg 
 
 Check to see if the remote host can be reached with the command 
 ```
-	ansible all -m ping
+ansible all -m ping
 ```
 
 You will see a success output on your terminal if the host is reachable.
@@ -30,7 +30,8 @@ Run the command below to verify if the host meets up with minimum requirements.
 
 Supported message will be shown, if host passes verification.
 
-![plot](./Readme/Screenshot from 2022-08-13 23-36-54.png)
+
+![Screenshot from 2022-08-13 23-36-54](https://user-images.githubusercontent.com/105638716/184876611-acbc0a02-29cb-46a3-a5fe-3d40a0bde571.png)
 
 ```
 ansible-playbook -l all playbooks/verify-cpu.yml
@@ -54,7 +55,7 @@ ansible-playbook -l all playbooks/near-cli.yml
 This process git clones the nearcore project and compiles nearcore binary.
 
 
-![plot](./Readme/Screenshot from 2022-08-15 12-39-05.png)
+![Screenshot from 2022-08-15 12-39-05](https://user-images.githubusercontent.com/105638716/184876720-ed003764-8ced-44d4-be8e-1c51bd49bfe0.png)
 
 ```
 ansible-playbook -l all playbooks/nearcore.yml 
@@ -98,9 +99,11 @@ You need to run this command:
 near login
 ```
 Note: This command launches a web browser allowing for the authorization of a full access key to be copied locally.
-![plot](./Readme/Screenshot from 2022-08-14 17-24-17.png)
+![Screenshot from 2022-08-14 17-24-17](https://user-images.githubusercontent.com/105638716/184876782-e69024a3-c0da-42a4-b225-d8bf02a62399.png)
+
 1 – Copy the link in your browser
-![plot](./Readme/Screenshot from 2022-08-14 17-24-29.png)
+![Screenshot from 2022-08-14 17-24-29](https://user-images.githubusercontent.com/105638716/184876839-c0945763-4536-4cc1-9849-fc4507c619f4.png)
+
 
 Enter your wallet id into the terminal and press Enter
 
