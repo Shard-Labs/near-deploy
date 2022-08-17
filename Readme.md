@@ -17,7 +17,7 @@ Enter the key's name _private_key_file  = ../ssh/<private-key.pem>_ ansible.cfg 
 
 Check to see if the remote host can be reached with the command 
 ```
-	cd ansible && ansible all -m ping
+	ansible all -m ping
 ```
 
 You will see a success output on your terminal if the host is reachable.
@@ -33,7 +33,6 @@ Supported message will be shown, if host passes verification.
 ![plot](./Readme/Screenshot from 2022-08-13 23-36-54.png)
 
 ```
-cd ansible  (change directory to ansible)
 ansible-playbook -l all playbooks/verify-cpu.yml
 ```
 If host passes the verification test, proceed with the Near installation.
@@ -54,18 +53,19 @@ ansible-playbook -l all playbooks/near-cli.yml
 # Setup nearcore
 This process git clones the nearcore project and compiles nearcore binary.
 
-Define the _nearcore_environment_, _user_ variable, _nearcore_environment_=_shardnet_, _user_=<remote_user>.
+
 ![plot](./Readme/Screenshot from 2022-08-15 12-39-05.png)
 
 ```
-ansible-playbook -l all playbooks/nearcore.yml --extra-var="nearcore_environment=shardnet"
+ansible-playbook -l all playbooks/nearcore.yml 
 ```
 
 
 # Setup and run neard
 Setup neard service.
+Define the _user_ variable (remote host user) in the --extra-var config below,  _user_=<remote_user>.
 ```
-ansible-playbook -l all playbooks/setup-neard.yml --extra-var="nearcore_environment=shardnet,user=<remote_user>"
+ansible-playbook -l all playbooks/setup-neard.yml --extra-var="user=<remote_user>"
 ```
 
 

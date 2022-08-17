@@ -1,0 +1,5 @@
+---
+- name: Install nearcore
+  hosts: all
+  roles:
+    - role: roles/setup-validator

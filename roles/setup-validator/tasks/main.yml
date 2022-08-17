@@ -1,0 +1,20 @@
+#- name: Initialize Near Login
+#  shell:
+#    cmd: near login
+#  register: output
+#- debug: msg="{{ output.stdout }}"
+
+
+- name: Check for validator.json file
+  stat:
+    path: ~/.near/validator_key.json
+  register: validator
+
+- name: If validator exists
+  debug:
+    msg: "validator_key.json file exists"
+  when: validator.stat.exists
+
+- name: Generate a validator_key.json id
+  shell: near generate-key {{ pool_id }}
+  when: not validator.stat.exists
