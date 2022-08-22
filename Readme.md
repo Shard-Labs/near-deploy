@@ -70,8 +70,8 @@ ansible-playbook -l all playbooks/near-cli.yml
 # Configure setup-neard variables
 Configure the neard variables in /roles/setup-neard/main.yml directory. Three variables are required
 ```
-nearcore_branch: Define the nearcore version. Default is _tags/1.27.0_
-nearcore_environment: The environment is required, default is _shardnet_
+nearcore_branch: Define the nearcore version. Default is tags/1.27.0
+nearcore_environment: The environment is required, default is shardnet
 user: Remote host user is required.
 
 ```
@@ -91,7 +91,7 @@ ansible-playbook -l all playbooks/nearcore.yml
 Setup neard service.
 Define the _user_ variable (remote host user) in the --extra-var config below,  _user_=<remote_user>.
 ```
-ansible-playbook -l all playbooks/setup-neard.yml --extra-var="user=<remote_user>"
+ansible-playbook -l all playbooks/setup-neard.yml 
 ```
 
 
