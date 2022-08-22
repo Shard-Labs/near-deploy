@@ -9,11 +9,28 @@ apt install ansible
 Help link for ansible installation on other OS.
 _https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html_
 
+
+
+
+# Ansible configuration
+
 Enter the remote host IP of the instance in inventory.yml, the inventory.yml file should be located in the root of the ansible directory.
 
-Copy the ssh private-key.pem for the host to into the ssh directory.
 
-Enter the key's name _private_key_file  = ../ssh/<private-key.pem>_ ansible.cfg in the ansible directory. 
+Configure connection to the remote host in the ansible.cfg file.
+```angular2html
+Define the path to your inventory.yml file. e.g using the inventory file in the root directory
+inventory=./inventory.yml
+
+
+Set the remote user name
+remote_user=azureuser
+
+Define the location to the remote host ssh key
+private_key_file=./key.pem
+
+```
+
 
 Check to see if the remote host can be reached with the command 
 ```
@@ -21,7 +38,6 @@ ansible all -m ping
 ```
 
 You will see a success output on your terminal if the host is reachable.
-
 
 
 # Verify Cpu
@@ -42,6 +58,7 @@ If host passes the verification test, proceed with the Near installation.
 Install dependencies needed to setup near environment. 
 ```
 ansible-playbook -l all playbooks/verify-cpu.yml
+ansible-playbook -l all playbooks/deps.yml
 ansible-playbook -l all playbooks/node.yml
 ```
 
