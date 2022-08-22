@@ -67,6 +67,14 @@ Install node and node cli on the host.
 ```
 ansible-playbook -l all playbooks/near-cli.yml
 ```
+# Configure setup-neard variables
+Configure the neard variables in /roles/setup-neard/main.yml directory. Three variables are required
+```
+nearcore_branch: Define the nearcore version. Default is _tags/1.27.0_
+nearcore_environment: The environment is required, default is _shardnet_
+user: Remote host user is required.
+
+```
 
 # Setup nearcore
 This process git clones the nearcore project and compiles nearcore binary.
